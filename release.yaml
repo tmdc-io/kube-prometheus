@@ -1,0 +1,5 @@
+VERSION: 8.25.8
+PUBLIC_RELEASE_BRANCH: release/public
+DEV_RELEASE_BRANCH: release/dev
+DEV_RELEASE_SUFFIX: -dev
+DEV_BRANCH: master
