@@ -172,3 +172,4 @@ spec:
       {{- if .Values.operator.extraVolumes }}
       volumes: {{- include "common.tplvalues.render" (dict "value" .Values.operator.extraVolumes "context" $) | nindent 8 }}
       {{- end }}
+{{- end }}      
