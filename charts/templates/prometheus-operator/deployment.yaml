@@ -67,12 +67,15 @@ spec:
         - name: prometheus-operator
           image: {{ template "kube-prometheus.image" . }}
           imagePullPolicy: {{ .Values.operator.image.pullPolicy }}
-          env:
-            - name: PROMETHEUS_CONFIG_RELOADER
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ template "kube-prometheus.operator.fullname" . }}
-                  key: prometheus-config-reloader
+          {{- if .Values.operator.containerSecurityContext.enabled }}
+          securityContext: {{- omit .Values.operator.containerSecurityContext "enabled" | toYaml | nindent 12 }}
+          {{- end }}
+          {{- if .Values.operator.command }}
+          command: {{- include "common.tplvalues.render" (dict "value" .Values.operator.command "context" $) | nindent 12 }}
+          {{- end }}
+          {{- if .Values.operator.args }}
+          args: {{- include "common.tplvalues.render" (dict "value" .Values.operator.args "context" $) | nindent 12 }}
+          {{- else }}
           args:
             {{- if .Values.operator.namespaces }}
             - --namespaces={{ .Values.operator.namespaces }}
@@ -172,4 +175,4 @@ spec:
       {{- if .Values.operator.extraVolumes }}
       volumes: {{- include "common.tplvalues.render" (dict "value" .Values.operator.extraVolumes "context" $) | nindent 8 }}
       {{- end }}
-{{- end }}      
+{{- end }}
