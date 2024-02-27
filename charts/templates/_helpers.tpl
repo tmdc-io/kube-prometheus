@@ -81,6 +81,7 @@ Labels for operator
 {{- define "kube-prometheus.operator.labels" -}}
 {{- include "common.labels.standard" ( dict "customLabels" .Values.commonLabels "context" $ ) }}
 app.kubernetes.io/component: operator
+app: prometheus
 {{- end -}}
 
 {{/*
@@ -89,6 +90,7 @@ Labels for prometheus
 {{- define "kube-prometheus.prometheus.labels" -}}
 {{- include "common.labels.standard" ( dict "customLabels" .Values.commonLabels "context" $ ) }}
 app.kubernetes.io/component: prometheus
+app: prometheus
 {{- end -}}
 
 {{/*
@@ -97,6 +99,7 @@ Labels for alertmanager
 {{- define "kube-prometheus.alertmanager.labels" -}}
 {{- include "common.labels.standard" ( dict "customLabels" .Values.commonLabels "context" $ ) }}
 app.kubernetes.io/component: alertmanager
+app: prometheus
 {{- end -}}
 
 {{/*
@@ -105,6 +108,7 @@ Labels for blackbox-exporter
 {{- define "kube-prometheus.blackboxExporter.labels" -}}
 {{- include "common.labels.standard" ( dict "customLabels" .Values.commonLabels "context" $ ) }}
 app.kubernetes.io/component: blackbox-exporter
+app: prometheus
 {{- end -}}
 
 {{/*
@@ -114,6 +118,7 @@ Labels for operator pods
 {{- $podLabels := include "common.tplvalues.merge" ( dict "values" ( list .Values.operator.podLabels .Values.commonLabels ) "context" . ) }}
 {{- include "common.labels.standard" ( dict "customLabels" $podLabels "context" $ ) }}
 app.kubernetes.io/component: operator
+app: prometheus
 {{- end -}}
 
 {{/*
@@ -123,6 +128,7 @@ Labels for blackbox-exporter pods
 {{- $podLabels := include "common.tplvalues.merge" ( dict "values" ( list .Values.blackboxExporter.podLabels .Values.commonLabels ) "context" . ) }}
 {{- include "common.labels.standard" ( dict "customLabels" $podLabels "context" $ ) }}
 app.kubernetes.io/component: blackbox-exporter
+app: prometheus
 {{- end -}}
 
 {{/*
@@ -132,6 +138,7 @@ matchLabels for operator
 {{- $podLabels := include "common.tplvalues.merge" ( dict "values" ( list .Values.operator.podLabels .Values.commonLabels ) "context" . ) }}
 {{- include "common.labels.matchLabels" ( dict "customLabels" $podLabels "context" $ ) }}
 app.kubernetes.io/component: operator
+app: prometheus
 {{- end -}}
 
 {{/*
@@ -143,6 +150,7 @@ matchLabels for prometheus
 {{- include "common.tplvalues.render" ( dict "value" $podLabels "context" $ ) }}
 {{- end }}
 app.kubernetes.io/name: prometheus
+app: prometheus
 app.kubernetes.io/component: prometheus
 prometheus: {{ template "kube-prometheus.prometheus.fullname" . }}
 {{- end -}}
@@ -156,6 +164,7 @@ matchLabels for alertmanager
 {{- include "common.tplvalues.render" ( dict "value" $podLabels "context" $ ) }}
 {{- end }}
 app.kubernetes.io/name: alertmanager
+app: prometheus
 app.kubernetes.io/component: alertmanager
 alertmanager: {{ template "kube-prometheus.alertmanager.fullname" . }}
 {{- end -}}
@@ -167,6 +176,7 @@ matchLabels for blackbox-exporter
 {{- $podLabels := include "common.tplvalues.merge" ( dict "values" ( list .Values.blackboxExporter.podLabels .Values.commonLabels ) "context" . ) }}
 {{- include "common.labels.matchLabels" ( dict "customLabels" $podLabels "context" $ ) }}
 app.kubernetes.io/component: blackbox-exporter
+app: prometheus
 {{- end -}}
 
 {{/*
