@@ -2473,6 +2473,11 @@ kube-state-metrics:
   serviceMonitor:
     enabled: true
     honorLabels: true
+    metricRelabelings:
+      - action: drop
+        sourceLabels:
+          - node
+        regex: virtual-node-aci-linux
 ## Component scraping for kubelet and kubelet hosted cAdvisor
 ##
 kubelet:
