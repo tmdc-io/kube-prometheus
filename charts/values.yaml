@@ -2660,11 +2660,16 @@ blackboxExporter:
           preferred_ip_protocol: ip4
       https_2xx:
         prober: http
+        timeout: 5s
         http:
+          method: GET
           preferred_ip_protocol: ip4
+          valid_status_codes: [200, 201, 202, 204]
           tls_config:
             insecure_skip_verify: true
-          valid_status_codes: [200, 201, 202, 204]
+            ca_file: /etc/dataos/certs/ca.crt
+            cert_file: /etc/dataos/certs/tls.crt
+            key_file: /etc/dataos/certs/tls.key
       https_post_2xx:
         prober: http
         http:
