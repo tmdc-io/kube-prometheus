@@ -16,4 +16,6 @@ metadata:
 data:
   config.yml: |-
     {{- include "common.tplvalues.render" (dict "value" .Values.blackboxExporter.configuration "context" $) | nindent 4 }}
+  web-config.yml: |-
+      {{- include "common.tplvalues.render" (dict "value" .Values.blackboxExporter.webConfiguration "context" $) | nindent 4 }}
 {{- end }}
