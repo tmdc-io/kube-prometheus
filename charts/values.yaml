@@ -2704,11 +2704,6 @@ blackboxExporter:
         prober: tcp
         tcp:
           preferred_ip_protocol: ip4
-  ## Mount-tls
-  webConfiguration: |-
-      tls_server:
-        cert_file: /etc/dataos/certs/tls.crt
-        key_file: /etc/dataos/certs/tls.key
   ## @param blackboxExporter.existingConfigMap ConfigMap pointing to the Blackbox Exporter configuration
   ##
   existingConfigMap: ""

@@ -85,7 +85,6 @@ spec:
           args:
             - --config.file=/bitnami/blackbox-exporter/conf/config.yml
             - --web.listen-address=:{{ .Values.blackboxExporter.containerPorts.http }}
-            - --web.config.file=/bitnami/blackbox-exporter/conf/web-config.yml  # Add TLS config file
           {{- end }}
           {{- if .Values.blackboxExporter.extraEnvVars }}
           env: {{- include "common.tplvalues.render" (dict "value" .Values.blackboxExporter.extraEnvVars "context" $) | nindent 12 }}
