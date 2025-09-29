@@ -110,7 +110,7 @@ spec:
   {{- else if ne .Values.prometheus.resourcesPreset "none" }}
   resources: {{- include "common.resources.preset" (dict "type" .Values.prometheus.resourcesPreset) | nindent 4 }}
   {{- end }}
-  retention: {{ .Values.prometheus.retention }}
+  retention: {{ .Values.prometheus.retentionTime }}
   {{- if .Values.prometheus.retentionSize }}
   retentionSize: {{ .Values.prometheus.retentionSize }}
   {{- end }}
