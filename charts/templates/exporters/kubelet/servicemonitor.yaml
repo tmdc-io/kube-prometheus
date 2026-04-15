@@ -91,7 +91,7 @@ spec:
         insecureSkipVerify: false
       {{- end }}
       {{- if .Values.kubelet.serviceMonitor.resourceRelabelings }}
-      relabelings: {{- include "common.tplvalues.render" ( dict "value" .Values.kubelet.serviceMonitor.resourceRelabelings "context" .) | nindent 4 }}
+      relabelings: {{- include "common.tplvalues.render" ( dict "value" .Values.kubelet.serviceMonitor.resourceRelabelings "context" $) | nindent 8 }}
       {{- end }}
       {{- if .Values.kubelet.serviceMonitor.resourceMetricRelabelings }}
       metricRelabelings: {{- include "common.tplvalues.render" ( dict "value" .Values.kubelet.serviceMonitor.resourceMetricRelabelings "context" .) | nindent 4 }}
@@ -111,7 +111,7 @@ spec:
         insecureSkipVerify: false
       {{- end }}
       {{- if .Values.kubelet.serviceMonitor.resourceRelabelings }}
-      relabelings: {{- include "common.tplvalues.render" ( dict "value" .Values.kubelet.serviceMonitor.resourceRelabelings "context" .) | nindent 4 }}
+      relabelings: {{- include "common.tplvalues.render" ( dict "value" .Values.kubelet.serviceMonitor.resourceRelabelings "context" $) | nindent 8 }}
       {{- end }}
       {{- if .Values.kubelet.serviceMonitor.resourceMetricRelabelings }}
       metricRelabelings: {{- include "common.tplvalues.render" ( dict "value" .Values.kubelet.serviceMonitor.resourceMetricRelabelings "context" .) | nindent 4 }}
